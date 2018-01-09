@@ -1,6 +1,8 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
-import mui from 'material-ui'
+import classNames from 'classnames';
+import mui from 'material-ui';
+import styles from './information.scss';
 import * as homeActions from '../actions/homeActions';
 
 import { Link } from 'react-router';
@@ -37,8 +39,18 @@ class Information extends Component {
 
     return <div style={styles.root}>
       <h2>Information</h2>
+      <div>
+        <button
+            className={classNames({
+              btn: true,
+              accept: true
+            })}
+          >
+          Press!
+        </button>
+      </div>
 
-     
+
     </div>
   }
 }

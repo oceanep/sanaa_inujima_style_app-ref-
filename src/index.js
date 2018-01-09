@@ -10,6 +10,7 @@ import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { logger, callAPIMiddleware } from './middleware/api';
 import { reducers } from './reducers/index';
+import { store } from './store'
 
 import 'normalize-css';
 
@@ -23,16 +24,6 @@ injectTapEventPlugin();
 export const history = process.env.NODE_ENV === 'production' ?
   createHistory({queryKey: false}) :
   createBrowserHistory();
-
-
-const reducer = combineReducers(reducers);
-
-const createStoreWithMiddleware = applyMiddleware(
-  thunkMiddleware, // lets us dispatch() functions
-  callAPIMiddleware
-)(createStore);
-
-export const store = createStoreWithMiddleware(reducer); 
 
 ReactDOM.render(
 	<Provider store={store}>
