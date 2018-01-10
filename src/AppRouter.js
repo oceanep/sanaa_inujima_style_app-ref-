@@ -3,8 +3,8 @@ import { Router } from 'react-router';
 import mui from 'material-ui';
 
 class AppRouter extends Component {
-  constructor(props, context) {
-    super(props, context);
+  constructor(props) {
+    super(props);
   }
 
   static propTypes = {

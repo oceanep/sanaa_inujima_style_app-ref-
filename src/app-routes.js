@@ -8,20 +8,20 @@ import {
 import { store } from './index';
 
 import Application from './components/Application';
-import Home from './pages/home'
-import Information from './pages/information'
+import Information from './pages/information';
+import HomeContainer from './pages/homeContainer/HomeContainer';
+import MapContainer from './pages/mapContainer/MapContainer';
 
 const AppRoutes = (
-  <Route path="/" component={Application}>
-    <IndexRoute component={Home} />
+  <Route path="/">
+    <IndexRoute component={HomeContainer} />
     <Route path="home">
-      <IndexRoute component={Home}/>
+      <IndexRoute component={HomeContainer}/>
     </Route>
-    <Route path="info">
-      <IndexRoute component={Information}/>
+    <Route path="map">
+      <IndexRoute component={MapContainer}/>
     </Route>
   </Route>
 );
 
 export default AppRoutes;
-

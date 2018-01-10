@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import classNames from 'classnames';
 import mui from 'material-ui';
-import styles from './information.scss';
 import * as homeActions from '../actions/homeActions';
 
 import { Link } from 'react-router';

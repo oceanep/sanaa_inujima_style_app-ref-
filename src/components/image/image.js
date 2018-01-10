@@ -1,20 +1,20 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
-import styles from './Info.scss';
+import styles from './Image.scss';
 
 
-const Info = (props) => {
+const Image = (props) => {
 
   return (
     <div>
-      Info COMPONENT
+      Image COMPONENT
     </div>
   );
 
-  Info.propTypes = {
+  Image.propTypes = {
     // style: React.PropTypes.object,
   };
 }
 
-export default Info;
+export default Image;

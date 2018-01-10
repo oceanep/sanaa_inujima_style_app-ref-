@@ -1,31 +1,19 @@
-import React, { PropTypes, Component} from 'react';
+import React, { PropTypes } from 'react';
 import classNames from 'classnames';
 
 import styles from './Loader.scss';
 
 
+const Loader = (props) => {
 
-class Loader extends Component {
-  constructor(props) {
-    super(props);
-  }
-
-  render() {
-    return (
-      <div>
-        Loader COMPONENT
-      </div>
-    );
-  }
+  return (
+    <div>
+      Loader COMPONENT
+    </div>
+  );
 
   Loader.propTypes = {
     // style: React.PropTypes.object,
-  };
-}
-
-function mapStateToProps(state) {
-  return {
-
   };
 }
 

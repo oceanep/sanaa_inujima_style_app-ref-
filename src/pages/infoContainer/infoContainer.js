@@ -3,11 +3,11 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
-import styles from './MapContainer.scss';
+import styles from './infoContainer.scss';
 
 
 
-class MapContainer extends Component {
+class infoContainer extends Component {
   constructor(props) {
     super(props);
   }
@@ -15,7 +15,7 @@ class MapContainer extends Component {
   render() {
     return (
       <div>
-        MapContainer COMPONENT
+        infoContainer COMPONENT
       </div>
     );
   }
@@ -33,4 +33,4 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(MapContainer);
+export default connect(mapStateToProps, mapDispatchToProps)(infoContainer);
