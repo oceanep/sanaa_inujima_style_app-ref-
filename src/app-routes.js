@@ -15,11 +15,10 @@ import MapContainer from './pages/mapContainer/MapContainer';
 const AppRoutes = (
   <Route path="/">
     <IndexRoute component={HomeContainer} />
-    <Route path="home">
-      <IndexRoute component={HomeContainer}/>
-    </Route>
-    <Route path="map">
+    <Route path="home" component={HomeContainer}/>
+    <Route path="map" component={MapContainer}>
       <IndexRoute component={MapContainer}/>
+      <Route path="/info/:id" component={infoContainer}/>
     </Route>
   </Route>
 );

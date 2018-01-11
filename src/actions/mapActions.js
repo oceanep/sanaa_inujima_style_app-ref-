@@ -1,11 +1,27 @@
-export function fetchSites(id, text) {
-  return function(dispatch) {
-      dispatch({type: "FETCHING_SITE"});
+import * as firebase from "../api/firebase";
 
-      dispatch({type: "FETCHING_SITE", payload: {
-        id,
-        text
-      }
-    });
+export function fetchSiteIds() {
+  return function(dispatch) {
+      dispatch({type: "FETCHING_SITES"});
+
+      setTimeout(() => {
+        firebase.getIds().then(ids => {
+          dispatch({type: "FETCHED_SITES", payload: ids})
+        }).catch(error => {
+          dispatch({type: "FETCHED_SITES_FAILED", payload: error})
+        });
+      }, 3000);
+  }
+}
+
+export function fetchSitesData() {
+  return function(dispatch) {
+    
+  }
+}
+
+export function fetchSitesImages(){
+  return function(dispatch) {
+
   }
 }
