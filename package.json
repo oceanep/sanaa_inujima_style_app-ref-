@@ -10,7 +10,7 @@
     "dist": "NODE_ENV=production npm run build -- --config webpack.config.production.js",
     "lint": "eslint src",
     "start": "npm run build && node server.js",
-    "update:packages": "node wipe-dependencies.js && m -rf node_modules && npm update --save-dev && npm update --save"
+    "clean:modules": "rm -rf node_modules && npm install"
   },
   "author": "",
   "license": "ISC",
