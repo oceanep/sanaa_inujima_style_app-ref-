@@ -1,5 +1,18 @@
+let initialState = {
+  siteIds: []
+}
 
+export default function(state = initialState, action) {
+  let newState = Object.assign({}, state);
 
+  switch (action.type) {
+    // case expression:
+    //
+    //   break;
+    default:
+      return state;
+  };
+}
 // import * as types from '../constants/actionTypes';
 // import { combineReducers } from 'redux';
 //

@@ -5,8 +5,6 @@ import { Link } from 'react-router';
 
 import styles from './HomeContainer.scss';
 
-
-
 class HomeContainer extends Component {
   constructor(props) {
     super(props);

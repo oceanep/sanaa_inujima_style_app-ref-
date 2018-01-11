@@ -1,16 +1,10 @@
 import React, { Component, PropTypes } from 'react';
 import { Router } from 'react-router';
-import mui from 'material-ui';
 
 class AppRouter extends Component {
   constructor(props) {
     super(props);
   }
-
-  static propTypes = {
-    history: PropTypes.object.isRequired
-  };
-
 
   render() {
     return (
