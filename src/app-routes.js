@@ -13,7 +13,6 @@ const AppRoutes = (
   <Route path="/">
     <IndexRoute component={HomeContainer} />
     <Route path="map" component={MapContainer}>
-      <IndexRoute component={MapContainer}/>
       <Route path="/info/:id" component={infoContainer}/>
     </Route>
   </Route>

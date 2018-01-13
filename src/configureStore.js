@@ -5,7 +5,7 @@ import { logger } from 'redux-logger';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 
 import thunk from 'redux-thunk';
-import reducers from './reducers/reducers';
+import * as reducers from './reducers';
 
 
 // Use hash location for Github Pages

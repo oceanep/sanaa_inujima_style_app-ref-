@@ -1,8 +1,9 @@
 let initialState = {
-  siteIds: []
+  entered: false
+
 }
 
-export default function(state = initialState, action) {
+export default (state = initialState, action) => {
   let newState = Object.assign({}, state);
 
   switch (action.type) {

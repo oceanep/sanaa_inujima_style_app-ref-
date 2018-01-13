@@ -3,6 +3,8 @@ import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import Enter from '../../components/Enter/Enter';
+
 import styles from './HomeContainer.scss';
 
 class HomeContainer extends Component {
@@ -13,7 +15,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div>
-        HomeContainer COMPONENT
+        <Enter/>
       </div>
     );
   }
