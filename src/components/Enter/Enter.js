@@ -7,7 +7,7 @@ import styles from './Enter.scss';
 const Enter = (props) => {
 
   return (
-    <div className={styles.circle} >Here</div>
+    <div className={styles.circle} >{console.log(styles.circle)}</div>
   );
 
   Enter.propTypes = {

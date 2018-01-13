@@ -8,7 +8,7 @@
 var webpack = require('webpack'),
     path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    eslintrcPath = path.resolve(__dirname, '.eslintrc');
+    ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
   devtool: 'eval',
@@ -32,39 +32,67 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx']
+    extensions: ['.js', '.jsx', '.css', '.scss']
   },
   module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /(node_modules|bower_components)/,
-      loaders: ['babel-loader'],
-    }, {
-      test: /\.scss$/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
-    }, {
-      test: /\.(png|jpg|gif)$/,
-      loader: 'url-loader?limit=8192'
-    },
-    {
-      test: /\.json$/,
-      loader: 'json-loader'
-    },
-    {
-      test: /\.(ttf|eot|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "file-loader"
-    },
-    { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff"
-    }]
+      rules: [
+          {
+              test: /\.(js|jsx)$/,
+              exclude: /(node_modules|bower_components)/,
+              use: ['babel-loader'],
+          },{
+              test: /\.css$/,
+              use: [
+                'style-loader',
+                {
+                  loader: 'css-loader',
+                  options: {
+                    modules: true
+                  }
+                }
+              ]
+          },{
+              test: /\.scss$/,
+              use: ExtractTextPlugin.extract({
+                  fallbackLoader: 'style-loader',
+                  loader: [
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        modules: true
+                      }
+                    },
+                    'sass-loader'
+                  ],
+                  publicPath: '/dist'
+              })
+          }, {
+              test: /\.(png|jpg|gif)$/,
+              use: ['url-loader?limit=8192']
+          },
+          {
+              test: /\.json$/,
+              use: ['json-loader']
+          },
+          {
+              test: /\.(ttf|eot|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              use: ["file-loader"]
+          },
+          {
+              test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              use: ["url-loader?limit=10000&mimetype=application/font-woff"]
+          }
+      ]
   },
-
+  devServer: {
+      contentBase: path.join(__dirname, "dist"),
+      compress: true,
+      stats: "errors-only",
+      open: true
+  },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development'),
@@ -78,6 +106,11 @@ module.exports = {
       // favicon: './src/images/favicon.ico',
       chunks: ['index'],
     }),
+    new ExtractTextPlugin({
+        filename: 'app.css',
+        disable: false,
+        allChunks: true
+    }),
     /* You can use jquery if you need it
     new webpack.ProvidePlugin({
         $: "jquery",
@@ -87,7 +120,4 @@ module.exports = {
     */
   ],
 
-  eslint: {
-    configFile: eslintrcPath
-  }
 };
