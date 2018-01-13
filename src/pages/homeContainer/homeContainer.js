@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Enter from '../../components/Enter/Enter';
+import Loader from '../../components/Loader/Loader';
 
 import styles from './HomeContainer.scss';
 

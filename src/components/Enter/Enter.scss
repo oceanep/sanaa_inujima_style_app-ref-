@@ -1,7 +1,18 @@
+.container {
+    position: relative;
+    display: flex;
+}
 
-.circle {
-  height: 50px;
-  width: 50px;
-  background-color: #555;
-  border-radius: 50%;
+.topHalf {
+  height: 50vh;
+  width: 100vw;
+  border-bottom: 1px solid rgba(205, 205, 208, .4);
+  background-color: rgba(147, 158, 204, 1);
+}
+
+.bottomHalf {
+  height: 50vh;
+  width: 100vw;
+  border-top: 1px solid rgba(205, 205, 208, .4);
+  background-color: rgba(147, 158, 204, 1);
 }

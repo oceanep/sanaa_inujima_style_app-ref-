@@ -8,7 +8,8 @@
 var webpack = require('webpack'),
     path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    ExtractTextPlugin = require("extract-text-webpack-plugin");
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    autoprefixer = require("autoprefixer");
 
 module.exports = {
   devtool: 'eval',
@@ -47,7 +48,16 @@ module.exports = {
                 {
                   loader: 'css-loader',
                   options: {
-                    modules: true
+                    modules: true,
+                    localIdentName: '[local]__[hash:base64:5]' // better for debugging
+                  }
+                },
+                {
+                  loader: 'postcss-loader', // postcss loader so we can use autoprefixer
+                  options: {
+                    config: {
+                      path: 'postcss.config.js'
+                    }
                   }
                 }
               ]
@@ -59,7 +69,17 @@ module.exports = {
                     {
                       loader: 'css-loader',
                       options: {
-                        modules: true
+                        modules: true,
+                        localIdentName: '[local]__[hash:base64:5]' // better for debugging
+
+                      }
+                    },
+                    {
+                      loader: 'postcss-loader', // postcss loader so we can use autoprefixer
+                      options: {
+                        config: {
+                          path: 'postcss.config.js'
+                        }
                       }
                     },
                     'sass-loader'

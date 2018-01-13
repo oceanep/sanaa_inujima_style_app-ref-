@@ -8,7 +8,7 @@ const Loader = (props) => {
 
   return (
     <div>
-      Loader COMPONENT
+      <div className={styles.circle} ></div>
     </div>
   );
 
