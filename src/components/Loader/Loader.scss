@@ -1,6 +1,12 @@
 .circle {
-  height: 50px;
-  width: 50px;
+  height: 100px;
+  width: 100px;
+  position: relative;
+  z-index: 5;
   background-color: #555;
   border-radius: 50%;
+  position: absolute;
+  top: 50vh;
+  left: 50vw;
+  margin: -50px 0 0 -50px;
 }

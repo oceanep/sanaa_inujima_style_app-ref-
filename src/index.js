@@ -5,8 +5,16 @@ import AppRouter from './AppRouter';
 
 import { Provider } from 'react-redux';
 import { history, store } from './configureStore';
+import "react-image-gallery/styles/css/image-gallery.css";
+import * as firebase from 'firebase';
+import {init as firebaseInit} from './middleware/firebase'
+
+
 
 import 'normalize-css';
+
+export default !firebase.apps.length ? firebaseInit() : firebase.app();
+
 
 ReactDOM.render(
 	<Provider store={store}>

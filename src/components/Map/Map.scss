@@ -1,0 +1,32 @@
+$screenHeight: 100vh;
+$screenWidth: 100vw;
+// @function getTranslate($h, $w){
+//   @return calc(#{$w} - #{$h} * 1.5);
+// }
+// @mixin translateX ($x) {
+//   transform:(translateX($x));
+// }
+
+.screenContainer {
+  height: $screenHeight;
+  width: 100vw;
+  position: relative;
+  overflow: scroll;
+}
+
+.mapSVG {
+  height: $screenHeight;
+  // @include translateX (getTranslate($screenHeight, $screenWidth));
+}
+
+.rect1 {
+  fill: grey;
+}
+
+.rect2 {
+  fill: black;
+}
+
+.iconContainer {
+  pointer-events: none;
+}

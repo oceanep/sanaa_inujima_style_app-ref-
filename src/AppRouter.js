@@ -1,9 +1,13 @@
 import React, { Component, PropTypes } from 'react';
 import { Router } from 'react-router';
+import { connect } from 'react-redux';
+import {bindActionCreators} from 'redux';
+import * as homeActions from './actions/homeActions';
 
 class AppRouter extends Component {
   constructor(props) {
     super(props);
+    this.props.actions.fetchSites();
   }
 
   render() {
@@ -13,4 +17,13 @@ class AppRouter extends Component {
   }
 }
 
-export default AppRouter;
+function mapStateToProps(state) {
+  console.log(state.mapReducer.siteIds);
+  return {};
+}
+
+function mapDispatchToProps(dispatch) {
+  return { actions: bindActionCreators(homeActions, dispatch) };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(AppRouter);

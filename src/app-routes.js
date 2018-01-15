@@ -8,12 +8,13 @@ import {
 import HomeContainer from './pages/homeContainer/HomeContainer';
 import MapContainer from './pages/mapContainer/MapContainer';
 import infoContainer from './pages/infoContainer/infoContainer';
+import Map from './components/Map/Map';
 
 const AppRoutes = (
   <Route path="/">
     <IndexRoute component={HomeContainer} />
-    <Route path="map" component={MapContainer}>
-      <Route path="/info/:id" component={infoContainer}/>
+    <Route path="/map" component={MapContainer}>
+      <Route path="/map/:id" component={infoContainer}/>
     </Route>
   </Route>
 );

@@ -1,27 +1,21 @@
-import * as firebase from "../api/firebase";
+import { getSiteFromLang } from "../middleware/firebase";
+import {push} from 'react-router-redux'
 
-export function fetchSiteIds() {
-  return function(dispatch) {
-      dispatch({type: "FETCHING_SITES"});
 
-      setTimeout(() => {
-        firebase.getIds().then(ids => {
-          dispatch({type: "FETCHED_SITES", payload: ids})
-        }).catch(error => {
-          dispatch({type: "FETCHED_SITES_FAILED", payload: error})
-        });
-      }, 3000);
+export const loadInfoModal = (id) => {
+  return (dispatch) => {
+    dispatch(push(`/map/${id}`));
   }
 }
 
-export function fetchSitesData() {
+export function fetchSiteData(id) {
   return function(dispatch) {
-    
+    dispatch({type: "FETCH_SITE_DATA", payload: id});
   }
 }
 
-export function fetchSitesImages(){
+export function fetchSitesImages(id){
   return function(dispatch) {
-
+    dispatch({type: "FETCH_SITE_IMAGES", payload: id})
   }
 }

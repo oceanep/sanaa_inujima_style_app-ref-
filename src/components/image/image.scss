@@ -1,0 +1,32 @@
+.imageModule {
+  height: 90vh;
+  width: 90vw;
+  background: rgb(253, 253, 255);
+  box-shadow: 0px 0px 8px 1px black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info {
+  margin: 1em 0;
+  padding: .5em;
+  height: auto;
+  text-align: center;
+  border-top: 1px solid rgb(140, 209, 255);
+  border-bottom: 1px solid rgb(140, 209, 255);
+}
+
+.closeButton {
+  all: initial;
+  text-align: center;
+  width: 3em;
+  height: 2.5em;
+  background-color: rgba(243, 243, 243, 0.3);
+  border-radius: .8em;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+  color: #e4e4e4;
+  margin-top: auto;
+  margin-bottom: 1em;
+}

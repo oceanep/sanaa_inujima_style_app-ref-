@@ -1,33 +1,51 @@
-import React, { PropTypes, Component} from 'react';
+import React, { Component} from 'react';
+import {bindActionCreators} from 'redux';
+import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Enter from '../../components/Enter/Enter';
 import Loader from '../../components/Loader/Loader';
+import Language from '../../components/Language/Language';
+
+import * as homeActions from '../../actions/homeActions';
 
 import styles from './HomeContainer.scss';
 
 class HomeContainer extends Component {
   constructor(props) {
     super(props);
+    this.state = {
+      entry: true
+    };
+  }
+
+  enterApp = () => {
+    this.setState({entry: !this.state.entry});
+  }
+
+  requestSites = lang => {
+    this.props.actions.fetchSites(lang);
   }
 
   render() {
     return (
-      <div>
-        <Enter/>
+      <div className={styles.homeContainer} >
+        {this.state.entry? <Enter><Loader onClick={this.enterApp}/></Enter> : <Language onClick={this.requestSites}/>}
       </div>
     );
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+
+  };
 }
 
 function mapDispatchToProps(dispatch) {
-  return {};
+  return { actions: bindActionCreators(homeActions, dispatch)};
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomeContainer);

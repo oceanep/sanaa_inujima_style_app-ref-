@@ -1,31 +1,36 @@
-import React, { PropTypes, Component} from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router';
+import { push } from 'react-router-redux';
+
 import classNames from 'classnames';
 
 import styles from './Icon.scss';
 
 
 
-class Icon extends Component {
-  constructor(props) {
-    super(props);
-  }
+const Icon = (props) => {
 
-  render() {
-    return (
-      <div>
-        Icon COMPONENT
-      </div>
-    );
+  function openInfoModal(id){
+
+    console.log(`info/${id}`);
   }
+console.log(props.id);
+  let bgImg = {
+      background: `url(${props.url}) 0 0 no-repeat`,
+      backgroundSize: '100px'
+    };
+
+    return (
+      // <Link to={`map/info/${props.id}`} >
+        <div style={bgImg} className={styles.iconImg} onClick={props.onClick.bind(this,props.id)}></div>
+      // </Link>
+    );
+
 
   Icon.propTypes = {
-    // style: React.PropTypes.object,
-  };
-}
-
-function mapStateToProps(state) {
-  return {
-
+    url: PropTypes.string,
+    id: PropTypes.string,
   };
 }
 

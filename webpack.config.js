@@ -43,24 +43,28 @@ module.exports = {
               use: ['babel-loader'],
           },{
               test: /\.css$/,
-              use: [
-                'style-loader',
-                {
-                  loader: 'css-loader',
-                  options: {
-                    modules: true,
-                    localIdentName: '[local]__[hash:base64:5]' // better for debugging
-                  }
-                },
-                {
-                  loader: 'postcss-loader', // postcss loader so we can use autoprefixer
-                  options: {
-                    config: {
-                      path: 'postcss.config.js'
+              use: ExtractTextPlugin.extract({
+                  fallbackLoader: 'style-loader',
+                  loader: [
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        modules: true,
+                        localIdentName: '[local]' // better for debugging
+
+                      }
+                    },
+                    {
+                      loader: 'postcss-loader', // postcss loader so we can use autoprefixer
+                      options: {
+                        config: {
+                          path: 'postcss.config.js'
+                        }
+                      }
                     }
-                  }
-                }
-              ]
+                  ],
+                  publicPath: '/dist'
+              })
           },{
               test: /\.scss$/,
               use: ExtractTextPlugin.extract({
