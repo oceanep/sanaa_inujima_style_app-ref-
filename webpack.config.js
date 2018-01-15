@@ -120,9 +120,9 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development'),
-        'appbar_title': JSON.stringify('React-Redux Starter'),
+        'appbar_title': JSON.stringify('InujimaStyle2018'),
       },
-      '__DEVTOOLS__': true
+      '__DEVTOOLS__': false
     }),
     new HtmlWebpackPlugin({
       filename: './index.html',
@@ -135,13 +135,6 @@ module.exports = {
         disable: false,
         allChunks: true
     }),
-    /* You can use jquery if you need it
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery"
-    })
-    */
   ],
 
 };

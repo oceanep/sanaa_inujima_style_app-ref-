@@ -24,6 +24,4 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 export const store = createStore(reducer, composeEnhancers(middleware));
 
-export const history = process.env.NODE_ENV === 'production' ?
-  createHistory({queryKey: false}) :
-  syncHistoryWithStore(browserHistory, store);
+export const history = syncHistoryWithStore(browserHistory, store);

@@ -27,6 +27,14 @@ $screenWidth: 100vw;
   fill: black;
 }
 
-.iconContainer {
-  pointer-events: none;
+.st0{opacity:0.8;fill:#DCF8FF;enable-background:new;}
+
+@media only screen
+  and (min-device-width: 800px)
+  and (-webkit-min-device-pixel-ratio: 1.5) {
+
+  .mapSVG {
+    height: $screenWidth;
+    // @include translateX (getTranslate($screenHeight, $screenWidth));
+  }
 }

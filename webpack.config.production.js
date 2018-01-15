@@ -1,12 +1,15 @@
 var webpack = require('webpack'),
     path = require('path'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
-    eslintrcPath = path.resolve(__dirname, '.eslintrc');
+    ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    autoprefixer = require("autoprefixer");
 
 module.exports = {
   entry: {
     'index':  [
-      './src/index',
+      'eventsource-polyfill', // necessary for hot reloading with IE
+      './src/index'
+      // "webpack/hot/dev-server"
     ]
   },
   output: {
@@ -21,67 +24,103 @@ module.exports = {
   },
 
   plugins: [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.UglifyJsPlugin({
-      compress: {
-        warnings: false
-      }
-    }),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin(),
     new webpack.DefinePlugin({
+      'process.env': {
+        'NODE_ENV': JSON.stringify('production'),
+        'appbar_title': JSON.stringify('InujimaStyle2018'),
+      },
       '__DEVTOOLS__': false
     }),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.AggressiveMergingPlugin(),
     new HtmlWebpackPlugin({
       filename: './index.html',
       template: './src/index.template.html',
       // favicon: './src/images/favicon.ico',
-      chunks: ['index']
+      chunks: ['index'],
     }),
-    /* You can use jquery if you need it
-    new webpack.ProvidePlugin({
-        $: "jquery",
-        jQuery: "jquery",
-        "window.jQuery": "jquery"
-    })
-    */
+    new ExtractTextPlugin({
+        filename: 'app.css',
+        disable: false,
+        allChunks: true
+    }),
   ],
 
   resolve: {
-    extensions: ['', '.js'],
-    alias: {
-      'styles': __dirname + '/src/styles',
-      'mixins': __dirname + '/src/mixins',
-      'components': __dirname + '/src/components/'
-    }
+    extensions: ['.js', '.jsx', '.css', '.scss']
   },
-
   module: {
-    loaders: [{
-      test: /\.(js|jsx)$/,
-      exclude: /(node_modules)/,
-      loader: 'babel-loader'
-    }, {
-      test: /\.scss/,
-      loader: 'style-loader!css-loader!sass-loader?outputStyle=expanded'
-    }, {
-      test: /\.css$/,
-      loader: 'style-loader!css-loader'
-    }, {
-      test: /\.(png|jpg|gif)$/,
-      loader: 'url-loader?limit=8192'
-    },
-    { 
-      test: /\.json$/,
-      loader: 'json-loader' 
-    },
-    { 
-      test: /\.(ttf|eot|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
-      loader: "file-loader" 
-    },
-    { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-      loader: "url-loader?limit=10000&mimetype=application/font-woff" 
-    }]
+      rules: [
+          {
+              test: /\.(js|jsx)$/,
+              exclude: /(node_modules|bower_components)/,
+              use: ['babel-loader'],
+          },{
+              test: /\.css$/,
+              use: ExtractTextPlugin.extract({
+                  fallbackLoader: 'style-loader',
+                  loader: [
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        modules: true,
+                        localIdentName: '[local]' // better for debugging
+
+                      }
+                    },
+                    {
+                      loader: 'postcss-loader', // postcss loader so we can use autoprefixer
+                      options: {
+                        config: {
+                          path: 'postcss.config.js'
+                        }
+                      }
+                    }
+                  ],
+                  publicPath: '/dist'
+              })
+          },{
+              test: /\.scss$/,
+              use: ExtractTextPlugin.extract({
+                  fallbackLoader: 'style-loader',
+                  loader: [
+                    {
+                      loader: 'css-loader',
+                      options: {
+                        modules: true,
+                        localIdentName: '[local]__[hash:base64:5]' // better for debugging
+
+                      }
+                    },
+                    {
+                      loader: 'postcss-loader', // postcss loader so we can use autoprefixer
+                      options: {
+                        config: {
+                          path: 'postcss.config.js'
+                        }
+                      }
+                    },
+                    'sass-loader'
+                  ],
+                  publicPath: '/dist'
+              })
+          }, {
+              test: /\.(png|jpg|gif)$/,
+              use: ['url-loader?limit=8192']
+          },
+          {
+              test: /\.json$/,
+              use: ['json-loader']
+          },
+          {
+              test: /\.(ttf|eot|svg|ico)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              use: ["file-loader"]
+          },
+          {
+              test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              use: ["url-loader?limit=10000&mimetype=application/font-woff"]
+          }
+      ]
   },
 
   eslint: {

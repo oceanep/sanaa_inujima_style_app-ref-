@@ -30,7 +30,7 @@ class InfoContainer extends Component {
       <div className={styles.infoContainer}>
         <Image
           items = {this.setImages()}
-          id = {this.props.params.id}
+          id = {this.props.name}
         />
       </div>
     );
@@ -39,7 +39,9 @@ class InfoContainer extends Component {
 
 function mapStateToProps(state, ownProps) {
   return {
-    images: Object.assign({},state.mapReducer.siteImages[ownProps.params.id].images)
+    images: Object.assign({},state.mapReducer.siteImages[ownProps.params.id].images),
+    name: state.mapReducer.siteInfo[ownProps.params.id].name
+
   };
 }
 

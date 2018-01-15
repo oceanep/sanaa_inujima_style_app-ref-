@@ -17,12 +17,16 @@ class HomeContainer extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      entry: true
+      entry: false,
+      hideLanding: false,
     };
   }
 
   enterApp = () => {
     this.setState({entry: !this.state.entry});
+    setTimeout(()=>{
+      this.setState({hideLanding:true});
+    },2000);
   }
 
   requestSites = lang => {
@@ -32,7 +36,8 @@ class HomeContainer extends Component {
   render() {
     return (
       <div className={styles.homeContainer} >
-        {this.state.entry? <Enter><Loader onClick={this.enterApp}/></Enter> : <Language onClick={this.requestSites}/>}
+        {!this.state.hideLanding ? <Enter opened={this.state.entry} ><Loader opened={this.state.entry} onClick={this.enterApp}/></Enter> : null}
+        {this.state.entry ? <Language onClick={this.requestSites} opened={this.state.entry} animate={this.state.hideLanding}/> : null}
       </div>
     );
   }

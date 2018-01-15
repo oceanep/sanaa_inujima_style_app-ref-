@@ -18,7 +18,6 @@ class AppRouter extends Component {
 }
 
 function mapStateToProps(state) {
-  console.log(state.mapReducer.siteIds);
   return {};
 }
 

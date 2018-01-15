@@ -1,17 +1,39 @@
 .enterContainer {
-    position: relative;
+  height: 100vh;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
 }
 
 .topHalf {
   height: 50vh;
   width: 100vw;
-  border-bottom: 1px solid rgba(205, 205, 208, .4);
-  background-color: rgba(147, 158, 204, 1);
+  align-self: flex-start;
+  border-bottom: 1px solid rgba(205, 205, 208, 0.4);
+  box-shadow: inset 0px 0px 17px 6px rgba(205, 205, 208, 0.4);
+  background-color: #f3f3f3;
+
+  &.animating {
+    transition: height 1s ease-in;
+  }
+  &.open {
+    height: 0vh;
+  }
 }
 
 .bottomHalf {
   height: 50vh;
   width: 100vw;
-  border-top: 1px solid rgba(205, 205, 208, .4);
-  background-color: rgba(147, 158, 204, 1);
+  align-self: flex-end;
+  transition: height 2s ease-in;
+  border-top: 1px solid rgba(205, 205, 208, 0.4);
+  box-shadow: inset 0px 0px 17px 6px rgba(205, 205, 208, 0.4);
+  background-color: #f3f3f3;
+
+  &.animating {
+    transition: height 1s ease-in;
+  }
+  &.open {
+    height: 0vh;
+  }
 }

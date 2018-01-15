@@ -51,13 +51,11 @@ class MapContainer extends Component {
   }
 
   onIconClick = (iconId) => {
-    console.log(this.props.mapActions);
     this.props.actions.mapActions.loadInfoModal(iconId);
     console.log('fired icon action');
   }
 
   render() {
-    {console.log(this.props)}
     return (
     this.props.fetching ?
       <Loader/>
@@ -85,8 +83,6 @@ MapContainer.defaultProps = {
 };
 
 function mapStateToProps(state) {
-  console.log("mapping");
-  console.log(state);
   return {
     fetching: state.mapReducer.fetching,
     fetched: state.mapReducer.fetched,
