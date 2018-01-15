@@ -19,7 +19,8 @@ class MapContainer extends Component {
     super(props);
     this.state = {
       fetching: this.props.fetching,
-      fetched: this.props.fetched
+      fetched: this.props.fetched,
+      removeModal: false,
     }
   }
 
@@ -43,6 +44,10 @@ class MapContainer extends Component {
       iconUrls[ids] = this.props.sites[ids].icon;
     });
     return iconUrls;
+  }
+
+  modalClosed = () => {
+    this.setState({removeModal: true});
   }
 
   onIconClick = (iconId) => {

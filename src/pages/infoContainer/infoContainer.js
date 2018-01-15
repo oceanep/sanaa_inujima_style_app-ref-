@@ -14,26 +14,22 @@ class InfoContainer extends Component {
     super(props);
   }
 
-  render() {
+  setImages = () => {
+    let images = [];
 
-    const images = [
-    {
-      original: 'http://lorempixel.com/1000/600/nature/1/',
-      thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-    },
-    {
-      original: 'http://lorempixel.com/1000/600/nature/2/',
-      thumbnail: 'http://lorempixel.com/250/150/nature/2/'
-    },
-    {
-      original: 'http://lorempixel.com/1000/600/nature/3/',
-      thumbnail: 'http://lorempixel.com/250/150/nature/3/'
-    }];
+    for (let image in this.props.images){
+      images.push({original: this.props.images[image], thumbnail: this.props.images[image]});
+    }
+    let imageSet = images;
+    return imageSet;
+  }
+
+  render() {
 
     return (
       <div className={styles.infoContainer}>
         <Image
-          items = {images}
+          items = {this.setImages()}
           id = {this.props.params.id}
         />
       </div>
@@ -41,8 +37,9 @@ class InfoContainer extends Component {
   }
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, ownProps) {
   return {
+    images: Object.assign({},state.mapReducer.siteImages[ownProps.params.id].images)
   };
 }
 

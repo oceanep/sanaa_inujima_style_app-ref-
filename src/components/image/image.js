@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import ImageGallery from 'react-image-gallery';
 import { push } from 'react-router-redux';
+import { browserHistory } from 'react-router';
 
 import styles from './Image.scss';
 
@@ -11,9 +12,6 @@ import "react-image-gallery/styles/css/image-gallery.css";
 
 const Image = (props) => {
 
-  function leaveModal(){
-    push('/map');
-  }
 console.log(props);
   return (
     <div className={styles.imageModule}>
@@ -22,11 +20,12 @@ console.log(props);
         thumbnailLabel = {props.id}
         showFullscreenButton = {false}
         showPlayButton = {false}
+        lazyload={true}
       />
       <div className={styles.info}>
         <span>{props.id}</span>
       </div>
-      <button onClick={leaveModal} className={styles.closeButton}>X</button>
+      <button onClick={browserHistory.goBack} className={styles.closeButton}>X</button>
     </div>
   );
 

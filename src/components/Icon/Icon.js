@@ -18,7 +18,7 @@ const Icon = (props) => {
 console.log(props.id);
   let bgImg = {
       background: `url(${props.url}) 0 0 no-repeat`,
-      backgroundSize: '100px'
+      backgroundSize: '50px'
     };
 
     return (
