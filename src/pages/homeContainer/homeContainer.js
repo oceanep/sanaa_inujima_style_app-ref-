@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Enter from '../../components/Enter/Enter';
-import Loader from '../../components/Loader/Loader';
+import Loader2 from '../../components/Loader/Loader2';
 import Language from '../../components/Language/Language';
 
 import * as homeActions from '../../actions/homeActions';
@@ -43,7 +43,7 @@ class HomeContainer extends Component {
   render() {
     return (
       <div className={styles.homeContainer} >
-        <Loader opened={this.state.entry} startDelay={this.enterApp}/>
+        <Loader2 opened={this.state.entry}/>
         {this.state.entry ? <Language onClick={this.requestSites} opened={this.state.entry} animate={this.state.hideLanding}/> : null}
       </div>
     );
