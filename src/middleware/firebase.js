@@ -16,7 +16,8 @@ export const init = () => {
 }
 
 export const getSiteFromLang = lang => {
-  return database.ref('/eng').once('value');
+  let siteLang = !lang ? 'eng' : lang;
+  return database.ref(`/${lang}`).once('value');
 }
 // const schema = {
 //   site1: {

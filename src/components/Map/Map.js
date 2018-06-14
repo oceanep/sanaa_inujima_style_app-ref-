@@ -17,6 +17,8 @@ import {
 
 import Icon from '../Icon/Icon';
 
+import SvgMap from './SvgMap';
+
 import styles from './Map.scss';
 
 
@@ -44,28 +46,18 @@ const icons = mapIconsToArray(props);
 console.log(icons);
 
   return (
-    <div>
-      <div className={styles.screenContainer} >
-        <svg version="1.1" id="Layer_1"  x="0px" y="0px" viewBox="0 0 1654.4 1195.9" preserveAspectRatio="xMidYMid meet" className={styles.mapSVG}>
-
-          <g id="Water">
-          	<rect className={styles.st0} width="1654.4" height="1195.9"/>
-          </g>
-          <GroundSvg/>
-          <PathSvg/>
-          <ContourSvg/>
-          <BuildingSvg/>
-          <RoadSvg/>
-          <SanaaSvg/>
-          <ScaleCompassSvg/>
-          <IconSvg/>
-          <TextSvg/>
-          <ForeignObjSvg>{icons}</ForeignObjSvg>
-
-        </svg>
-
-      </div>
-    </div>
+    <g>
+      <GroundSvg/>
+      <PathSvg/>
+      <ContourSvg/>
+      <BuildingSvg/>
+      <RoadSvg/>
+      <SanaaSvg/>
+      <ScaleCompassSvg/>
+      <IconSvg/>
+      <TextSvg/>
+      <ForeignObjSvg>{icons}</ForeignObjSvg>
+    </g>
   );
 
 }
@@ -91,4 +83,4 @@ Map.defaultProps = {
 
 }
 
-export default Map;
+export default SvgMap(Map);

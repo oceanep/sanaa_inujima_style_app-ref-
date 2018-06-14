@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import Map from '../../components/Map/Map';
-import Loader from '../../components/Loader/Loader';
+import Loader2 from '../../components/Loader/Loader2';
 import InfoContainer from '../infoContainer/infoContainer';
 
 import styles from './MapContainer.scss';
@@ -21,7 +21,23 @@ class MapContainer extends Component {
       fetching: this.props.fetching,
       fetched: this.props.fetched,
       removeModal: false,
+      width: 0,
+      height: 0
     }
+    this.updateWindowDimensions = this.updateWindowDimensions.bind(this);
+  }
+
+  componentDidMount() {
+    this.updateWindowDimensions();
+    window.addEventListener('resize', this.updateWindowDimensions);
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateWindowDimensions);
+  }
+
+  updateWindowDimensions() {
+    this.setState({ width: window.innerWidth, height: window.innerHeight });
   }
 
   // componentWillMount() {
@@ -56,16 +72,20 @@ class MapContainer extends Component {
   }
 
   render() {
+    const {height, width} = this.state;
     return (
-    this.props.fetching ?
-      <Loader/>
-    : this.props.fetched ?
         <div>
-          <Map icons={this.renderIconUrls()} ids={this.props.siteIds} clickHandler={this.onIconClick}/>
+          <Loader2 opened={!this.props.fetching}/>
+          <Map
+            icons={this.renderIconUrls()}
+            ids={this.props.siteIds}
+            animate={this.props.fetched}
+            clickHandler={this.onIconClick}
+            height={height}
+            width={width}
+          />
           {this.props.children}
         </div>
-      :
-        null
     );
   }
 

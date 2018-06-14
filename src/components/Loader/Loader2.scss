@@ -1,0 +1,19 @@
+.loader {
+  height: 30vh;
+  width: 30vw;
+  margin: 0 35%;
+  position: absolute;
+  z-index: 5;
+  background: url(https://firebasestorage.googleapis.com/v0/b/inujimastyle2018.appspot.com/o/SunLoadingWheel.gif?alt=media&token=b875c5d9-87b4-4a90-b958-e73596519b7e)
+  0 0 no-repeat;
+  background-size: contain;
+  top: 30vh;
+  opacity: 1;
+
+  transition:
+  opacity 1s ease-in;
+  &.open{
+    opacity: 0;
+    pointer-events: none;
+  }
+}

@@ -25,7 +25,7 @@ console.log(props);
       <div className={styles.info}>
         <span>{props.id}</span>
       </div>
-      <button onClick={browserHistory.goBack} className={styles.closeButton}>X</button>
+      <button onClick={browserHistory.goBack} className={styles.closeButton}>{`<< `}</button>
     </div>
   );
 

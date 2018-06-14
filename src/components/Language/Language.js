@@ -13,6 +13,16 @@ const Language = (props) => {
     langContainer: true,
     opened: props.animate
   });
+
+  function selectLangE() {
+    console.log('eng');
+    props.onClick('eng');
+  };
+  function selectLangJ() {
+    console.log('jap');
+    props.onClick('jap');
+  };
+
   return (
     <div>
       <div className={classes}>
@@ -21,6 +31,7 @@ const Language = (props) => {
             >
             <Link to='map/'
               style={{ textDecoration: 'none', color: 'black' }}
+              onClick = { selectLangE }
               >English
             </Link>
           </li>
@@ -28,6 +39,7 @@ const Language = (props) => {
             >
             <Link to='map/'
               style={{ textDecoration: 'none', color: 'black' }}
+              onClick = { selectLangJ }
               >Japanese
             </Link>
           </li>

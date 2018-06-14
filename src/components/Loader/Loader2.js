@@ -1,11 +1,11 @@
 import React, { PropTypes } from 'react';
 import classNames from 'classnames/bind';
 
-import styles from './Loader.scss';
+import styles from './Loader2.scss';
 
 let cx = classNames.bind(styles);
 
-const Loader = (props) => {
+const Loader2 = (props) => {
 
   const opened = props.opened;
 
@@ -27,9 +27,9 @@ const Loader = (props) => {
     </div>
   )
 
-  Loader.propTypes = {
+  Loader2.propTypes = {
     // style: React.PropTypes.object,
   }
 }
 
-export default Loader;
+export default Loader2;

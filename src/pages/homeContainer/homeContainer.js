@@ -23,20 +23,27 @@ class HomeContainer extends Component {
   }
 
   enterApp = () => {
-    this.setState({entry: !this.state.entry});
+    // this.setState({entry: !this.state.entry});
+    setTimeout(()=>{
+      this.setState({entry:true});
+    },3000);
     setTimeout(()=>{
       this.setState({hideLanding:true});
-    },2000);
+    },4000);
   }
 
   requestSites = lang => {
     this.props.actions.fetchSites(lang);
   }
 
+  componentDidMount(){
+    this.enterApp();
+  }
+
   render() {
     return (
       <div className={styles.homeContainer} >
-        {!this.state.hideLanding ? <Enter opened={this.state.entry} ><Loader opened={this.state.entry} onClick={this.enterApp}/></Enter> : null}
+        <Loader opened={this.state.entry} startDelay={this.enterApp}/>
         {this.state.entry ? <Language onClick={this.requestSites} opened={this.state.entry} animate={this.state.hideLanding}/> : null}
       </div>
     );

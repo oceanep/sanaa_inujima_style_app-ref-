@@ -12,6 +12,13 @@ $screenWidth: 100vw;
   width: 100vw;
   position: relative;
   overflow: scroll;
+  opacity: 0;
+  transition:
+    opacity 2s ease-in;
+
+  &.opened {
+    opacity: 1;
+  }
 }
 
 .mapSVG {
@@ -31,7 +38,7 @@ $screenWidth: 100vw;
 
 @media only screen and (orientation: landscape) {
   .mapSVG {
-    height: $screenWidth;
+    height: $screenHeight;
   }
 }
 @media only screen
@@ -39,7 +46,7 @@ $screenWidth: 100vw;
   and (-webkit-min-device-pixel-ratio: 1.5) {
 
   .mapSVG {
-    height: $screenWidth;
+    height: $screenHeight;
     // @include translateX (getTranslate($screenHeight, $screenWidth));
   }
 }
