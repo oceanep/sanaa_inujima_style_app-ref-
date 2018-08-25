@@ -33,6 +33,11 @@ class HomeContainer extends Component {
   }
 
   requestSites = lang => {
+
+    if (lang && !(lang == '')) {
+      sessionStorage.setItem('langCache', JSON.stringify(lang));
+    }
+    this.props.actions.setLang(lang);
     this.props.actions.fetchSites(lang);
   }
 
@@ -52,7 +57,6 @@ class HomeContainer extends Component {
 
 function mapStateToProps(state) {
   return {
-
   };
 }
 

@@ -68,11 +68,10 @@ class MapContainer extends Component {
 
   onIconClick = (iconId) => {
     this.props.actions.mapActions.loadInfoModal(iconId);
-    console.log('fired icon action');
   }
 
   render() {
-    const {height, width} = this.state;
+    const {height, width, lang} = this.state;
     return (
         <div>
           <Loader2 opened={!this.props.fetching}/>
@@ -83,6 +82,7 @@ class MapContainer extends Component {
             clickHandler={this.onIconClick}
             height={height}
             width={width}
+            lang={lang}
           />
           {this.props.children}
         </div>
@@ -107,7 +107,7 @@ function mapStateToProps(state) {
     fetching: state.mapReducer.fetching,
     fetched: state.mapReducer.fetched,
     siteIds: state.mapReducer.siteIds,
-    sites: state.mapReducer.siteInfo
+    sites: state.mapReducer.siteInfo,
   };
 }
 

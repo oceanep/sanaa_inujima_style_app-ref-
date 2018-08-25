@@ -3,6 +3,7 @@ let initialState = {
   siteIds: [],
   siteInfo: {},
   siteImages: {},
+  lang: '',
   fetching: false,
   fetched: false,
   error: null
@@ -12,6 +13,7 @@ export default (state = initialState, action) => {
   let newState = Object.assign({}, state);
 
   switch (action.type) {
+
     case "FETCHING_SITES":
         newState = {...state, fetching: true};
       return newState;

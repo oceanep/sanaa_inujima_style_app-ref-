@@ -15,11 +15,9 @@ const Language = (props) => {
   });
 
   function selectLangE() {
-    console.log('eng');
     props.onClick('eng');
   };
   function selectLangJ() {
-    console.log('jap');
     props.onClick('jap');
   };
 
@@ -29,7 +27,7 @@ const Language = (props) => {
         <ul className={styles.langList}>
           <li className={styles.langListOp}
             >
-            <Link to='map/'
+            <Link to='/map/'
               style={{ textDecoration: 'none', color: 'black' }}
               onClick = { selectLangE }
               >English
@@ -37,7 +35,7 @@ const Language = (props) => {
           </li>
           <li className={styles.langListOp}
             >
-            <Link to='map/'
+            <Link to='/map/'
               style={{ textDecoration: 'none', color: 'black' }}
               onClick = { selectLangJ }
               >Japanese

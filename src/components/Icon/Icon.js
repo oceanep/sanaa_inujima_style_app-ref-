@@ -11,11 +11,6 @@ import styles from './Icon.scss';
 
 const Icon = (props) => {
 
-  function openInfoModal(id){
-
-    console.log(`info/${id}`);
-  }
-console.log(props.id);
   let bgImg = {
       background: `url(${props.url}) 0 0 no-repeat`,
       backgroundSize: '50px'

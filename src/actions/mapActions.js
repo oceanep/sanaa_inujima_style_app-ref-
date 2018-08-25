@@ -1,10 +1,11 @@
 import { getSiteFromLang } from "../middleware/firebase";
-import {push} from 'react-router-redux'
+import {push} from 'react-router-redux';
+import { browserHistory } from 'react-router';
 
 
 export const loadInfoModal = (id) => {
   return (dispatch) => {
-    dispatch(push(`/map/${id}`));
+    // dispatch(browserHistory.push(`${id}`));
   }
 }
 

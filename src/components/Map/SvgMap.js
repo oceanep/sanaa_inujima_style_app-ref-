@@ -14,11 +14,11 @@ export default (ComposedComponent) => {
       this.cx = 0;
       this.cy = 0;
 
-      this.width = +1654.4;
-      this.height = +1195.9;
+      // the width = +1654.4;
+      // the height = +1195.9;
 
       if (this.props.height > this.props.width) {
-        this.cx = this.width/2;
+        this.cx = this.props.width;
         this.cy = this.props.height/4;
       } else {
         this.cx = this.props.width/2;
@@ -26,9 +26,11 @@ export default (ComposedComponent) => {
       }
       this.state = {
         matrix: [1, 0, 0, 1, 0 - this.cx, 0 - this.cy],
+        ogMatrix: [1, 0, 0, 1, 0 - this.cx, 0 - this.cy],
         dragging: false,
-        ogScale: 1,
-        zoomScale: 1,
+        ogHeight: +1195.9,
+        ogWidth: +1654.4,
+        zoomScale: 0,
         lHeight: 0 - 1195.9/2,
         uHeight: +1195.9/4,
         lWidth: 0 - 1654.4/2,
@@ -55,6 +57,7 @@ export default (ComposedComponent) => {
       m[4] += dx;
       m[5] += dy;
 
+      //negative and positive values of x and y on graph to determine panning boundaries
       if ( m[4] <= lWidth ){
         m[4] = lWidth;
       } else if ( m[4] >= uWidth ){
@@ -74,38 +77,39 @@ export default (ComposedComponent) => {
 //when binding with has doubled, allow no more up scaling, when halfed, same
     zoom = scale => {
       const m = this.state.matrix;
-      // const ogS = this.state.ogScale;
-      // let zS = this.state.zoomScale;
+      const ogM= this.state.ogMatrix;
+
       let { lHeight, uHeight, lWidth, uWidth} = this.state;
       const len = m.length;
-      console.log(`scale: ${scale}`);
-      //
-      // zS += (1-scale) * (ogS);
-      //
-      // if ( 0 > zS > 2 * ogS) {
+
         for (let i = 0; i < len; i++){
-          m[i] *= scale;
+          m[i] += scale * ogM[i] - ogM[i];
         }
 
-        m[4] += (1-scale) * (this.props.height/2);
-        m[5] += (1-scale) * (this.props.width/2);
+        m[4] += (1-scale) * (this.state.ogHeight/2);
+        m[5] += (1-scale) * (this.state.ogWidth/4);
 
-        lHeight += (1-scale) * (this.props.height/2);
-        uHeight += (1-scale) * (this.props.height/2);
+        this.setState({ matrix: m });
 
-        lWidth += (1-scale) * (this.props.width/2);
-        uWidth += (1-scale) * (this.props.width/2);
+    }
 
-        this.setState({ matrix: m, lHeight, uHeight, lWidth, uWidth });
-      // }
-
+    checkZoomScale = scale => {
+      let zoomScale = this.state.zoomScale;
+      if (scale > 1) {
+        zoomScale < 5 ? this.zoom(scale) : null;
+        zoomScale += zoomScale < 5 ? 1 : 0;
+      } else if (scale < 1) {
+        zoomScale > (0-3) ? this.zoom(scale) : null;
+        zoomScale -= zoomScale > (0-3) ? 1 : 0;
+      }
+      this.setState({zoomScale})
     }
 
     onWheel = e => {
       if (e.deltaY < 0) {
-        this.zoom(1.05);
+        this.checkZoomScale(1.2);
       } else {
-        this.zoom(0.95);
+        this.checkZoomScale(0.8);
       }
     }
 
@@ -182,9 +186,6 @@ export default (ComposedComponent) => {
               onTouchEnd={this.onDragEnd}
               onWheel={this.onWheel}
             >
-              <g id="Water">
-                <rect className={styles.st0} width="1654.4" height="1195.9"/>
-              </g>
               <g transform={`matrix(${this.state.matrix.join(' ')})`}>
                 <ComposedComponent
                     {...props}
@@ -193,8 +194,23 @@ export default (ComposedComponent) => {
                   >
                 </ComposedComponent>
               </g>
-
             </svg>
+            <div className={styles.controller}>
+                <div
+                  className={styles.plusButton}
+                  cx="1300"
+                  cy="900"
+                  r="50"
+                  onClick={()=>{this.checkZoomScale(1.2)}}
+                >+</div>
+                <div
+                  className={styles.minusButton}
+                  cx="1300"
+                  cy="1025"
+                  r="50"
+                  onClick={()=>{this.checkZoomScale(0.8)}}
+                >-</div>
+            </div>
           </div>
         </div>
       )

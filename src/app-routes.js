@@ -12,9 +12,9 @@ import Map from './components/Map/Map';
 
 const AppRoutes = (
   <Route path="/">
-    <IndexRoute component={HomeContainer} />
-    <Route path="/map" component={MapContainer}>
-      <Route path="/map/:id" component={infoContainer}/>
+    <IndexRoute component={HomeContainer}/>
+    <Route path="map" component={MapContainer}>
+      <Route path=":id" component={infoContainer}/>
     </Route>
   </Route>
 );

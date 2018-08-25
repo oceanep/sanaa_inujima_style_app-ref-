@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { Link } from 'react-router';
 // import * as SVGs from '../../svgPaths/';
 import {
   GroundSvg,
@@ -26,24 +27,23 @@ const Map = props => {
 
   function onClickHandle(id){
     props.clickHandler(id);
-    console.log('fired at map level');
   }
 
   function mapIconsToArray({...props}){
     const renderedIcons = props.ids.map((id) =>
-      <Icon
-        key={id}
-        url={props.icons[`${id}`]}
-        id={id}
-        onClick={onClickHandle}
-      />
+      <Link to={`map/${id}`} key={id}>
+        <Icon
+          key={id}
+          url={props.icons[`${id}`]}
+          id={id}
+          onClick={onClickHandle}
+        />
+      </Link>
     );
-    console.log(icons);
     return (renderedIcons);
   }
 
 const icons = mapIconsToArray(props);
-console.log(icons);
 
   return (
     <g>
@@ -61,18 +61,6 @@ console.log(icons);
   );
 
 }
-//
-// <svg viewBox="0 0 750 250" preserveAspectRatio="xMidYMid meet" className={styles.mapSVG}>
-//   <rect x='0' y='0' width='375' height='250' className={styles.rect1}/>
-//   <rect x='375' y='0' width='375' height='250' className={styles.rect2}/>
-//   <foreignObject x='300' y ='125' width="200px" height="200px" className={styles.iconContainer}>
-//     <Icon
-//       url={props.icons[`${props.ids[0]}`]}
-//       id={props.ids[0]}
-//       onClick={onClickHandle}
-//     />
-//   </foreignObject>
-// </svg>
 
 Map.propTypes = {
   icons: PropTypes.object,

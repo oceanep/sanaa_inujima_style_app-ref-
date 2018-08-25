@@ -1,5 +1,6 @@
 let initialState = {
-  entered: false
+  entered: false,
+  lang: ''
 
 }
 
@@ -7,9 +8,9 @@ export default (state = initialState, action) => {
   let newState = Object.assign({}, state);
 
   switch (action.type) {
-    // case expression:
-    //
-    //   break;
+      case "SET_LANG":
+          newState = {...state, lang: action.payload}
+        return newState;
     default:
       return state;
   };

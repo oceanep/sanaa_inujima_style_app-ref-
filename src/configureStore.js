@@ -13,7 +13,7 @@ import mapReducer from './reducers/mapReducer';
 // Use hash location for Github Pages
 // but switch to HTML5 history locally.
 
-export const reducer = combineReducers({mapReducer, routing: routerReducer});
+export const reducer = combineReducers({mapReducer, homeReducer, routing: routerReducer});
 export const middleware = applyMiddleware(
   thunk, // lets us dispatch() functions
   logger,
