@@ -33,7 +33,7 @@ export default (ComposedComponent) => {
         zoomScale: 0,
         lHeight: 0 - 1195.9/2,
         uHeight: +1195.9/4,
-        lWidth: 0 - 1654.4/2,
+        lWidth: 0 - 1754.4/2,
         uWidth: +1654.4/4,
         opened: false
       };
@@ -87,9 +87,10 @@ export default (ComposedComponent) => {
         }
 
         m[4] += (1-scale) * (this.state.ogHeight/2);
-        m[5] += (1-scale) * (this.state.ogWidth/4);
+        m[5] += (1-scale) * (this.state.ogWidth/2);
+        lWidth *= scale;
 
-        this.setState({ matrix: m });
+        this.setState({ matrix: m, lWidth: lWidth });
 
     }
 

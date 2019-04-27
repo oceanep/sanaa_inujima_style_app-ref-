@@ -24,7 +24,8 @@ $screenWidth: 100vw;
 
 .mapSVG {
   height: $screenHeight;
-  margin-left: -25vh;
+  width: 100vw;
+  // margin-left: -25vh;
   overflow: visible;
   // @include translateX (getTranslate($screenHeight, $screenWidth));
 }

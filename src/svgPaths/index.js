@@ -8,3 +8,6 @@ export ScaleCompassSvg from './ScaleCompassSvg';
 export IconSvg from './IconSvg';
 export TextSvg from './TextSvg';
 export ForeignObjSvg from './ForeignObjSvg';
+export SeaSvg from './SeaSvg';
+export LakeSvg from './LakeSvg';
+export RoutesSvg from './RoutesSvg';

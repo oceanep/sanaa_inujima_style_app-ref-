@@ -13,7 +13,10 @@ import {
   ScaleCompassSvg,
   IconSvg,
   TextSvg,
-  ForeignObjSvg
+  ForeignObjSvg,
+  SeaSvg,
+  LakeSvg,
+  RoutesSvg,
 } from '../../svgPaths';
 
 import Icon from '../Icon/Icon';
@@ -47,15 +50,15 @@ const icons = mapIconsToArray(props);
 
   return (
     <g>
+      <SeaSvg/>
       <GroundSvg/>
-      <PathSvg/>
       <ContourSvg/>
-      <BuildingSvg/>
+      <LakeSvg/>
       <RoadSvg/>
-      <SanaaSvg/>
-      <ScaleCompassSvg/>
+      <BuildingSvg/>
+      <RoutesSvg/>
+
       <IconSvg/>
-      <TextSvg/>
       <ForeignObjSvg>{icons}</ForeignObjSvg>
     </g>
   );
